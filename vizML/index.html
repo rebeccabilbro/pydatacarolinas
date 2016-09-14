@@ -123,11 +123,11 @@
 
 						from sklearn.metrics import mean_squared_error
 						from sklearn.metrics import r2_score
-						print mse(expected, predicted)
-						print r2_score(expected, predicted)
+						print(mse(expected, predicted))
+						print(r2_score(expected, predicted))
 
 						from sklearn.metrics import classification_report
-						print classification_report(expected, predicted)
+						print(classification_report(expected, predicted))
 					<aside class="notes"> Because I'm a nice person, next I'd validate the model using the coefficient of determination for my regressors, or the F1 score for my classifiers. I'd proceed to feel superior if I got anything over .8, and otherwise...
 					</aside>
 					</script>
@@ -163,13 +163,12 @@
 				</script>
 				</section>
 
-				<section data-background="images/noidea.jpg" data-background-size="900px">
-					<h2 class="darkgrey">I have no idea what I'm doing</h2>
+				<section data-background="images/noidea.jpg">
 					<aside class="notes"> ...that maybe I had no idea what I was actually doing. I'm pretty sure I'm not the only one. Python and high-level libraries like Scikit-Learn have made Machine Learning accessible in a way that it never was before. But informed machine learning is still really hard.
 					</aside>
 				</section>
 
-				<section data-background="images/overtherainbow2.jpg" data-background-size="1000px">
+				<section data-background="images/overtherainbow2.jpg">
 						<h2 class="darkgrey">Informed machine learning is hard</h2>
 						<aside class="notes"> As the tools have become more accessible, the ML population has swelled. And it seems like the appetite for machine learning-based applications has never been bigger. Predictive methods are going to increasingly inform how we do all kinds of things, from how we shop to how we live, from how we fight to how we fall in love. Before, you used to have to go to school to do ML. My mentor has studied machine learning for a decade, and so has my boss. But the future of machine learning practitioners looks a lot more like me.
 						</aside>
@@ -184,27 +183,27 @@
 				<section data-background="images/dorothy.jpg">
 					<h2 class="darkgrey">Machine Learning in color?</h2>
 
-					<aside class="notes"> In other words, how do we turn on the technicolor for machine learning?
+					<aside class="notes"> In other words, how do we turn on the technicolor for machine learning? Many of the tools have already been implemented in Python. But they're kind scattered, so what I've done is cobbled them together into what I like to think of as the "yellow brick road"
 					</aside>
 				</section>
 
 				<section data-background="images/bricks.png" data-background-size="400px" data-background-repeat="repeat">
-						<h2 class="darkgrey">Yes, Follow the Yellow Brick Road</h2>
-							<aside class="notes"> Many of the tools have already been implemented in Python. But they're kind scattered, so what I've done is cobbled them together into what I like to think of as the "yellow brick road"
+						<h2 class="darkgrey">Follow the Yellow Brick Road</h2>
+							<aside class="notes"> Follow the yellow brick road
 							</aside>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+					<h1>The Model Selection Triple</h1>
+					<aside class="notes">My workflow is based on the model selection triple: feature analysis, model selection, and hyperparameter tuning.
+					</aside>
+					</script>
 				</section>
 
 				<section data-background="images/model_triple_workflow_color.png" data-background-size="700px">
 					<aside class="notes"> When it comes to ML, the most important picture to have is the big picture. Our conversations about models sometimes give us tunnel vision. Whether it's random forests, SVM, Bayes, neural nets, everyone has their favorite! Picking a good model is important, but it's not enough. I propose a broader view. This is a diagram of the workflow I use to do machine learning, and it's the one I use now to teach beginners. As you'll see, visualizations play a critical role in every stage.
 					</aside>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-					<h2>The Model Selection Triple</h2>
-					<aside class="notes">My workflow is based on the model selection triple: feature analysis, model selection, and hyperparameter tuning.
-					</aside>
-					</script>
 				</section>
 
 				<section data-background="images/feature_analysis.png" data-background-size="600px">
@@ -223,12 +222,6 @@
 				<h1 class="grey">Hyperparameter Tuning</h1>
 					<aside class="notes"> Hyperparameter tuning
 					</aside>
-				</section>
-
-				<section data-background="images/bricks.png" data-background-size="400px" data-background-repeat="repeat">
-						<h2 class="darkgrey">Follow the Yellow Brick Road</h2>
-							<aside class="notes"> Follow the yellow brick road
-							</aside>
 				</section>
 
 				<section data-markdown data-background="#f2be2c">
@@ -302,7 +295,7 @@
 				</section>
 
 				<section data-background="images/ml_map_v4.png" data-background-size="1000px">
-					<h2 class="darkgrey">Model families</h2>
+					<h2 class="darkgrey">Models: Families, Forms, Fitted</h2>
 					<aside class="notes">Lately I've been experimenting with some different ways of visualizing model families. I think it would be useful to be able to treat model selection as a kind of graph theory traversal problem.
 					</aside>
 				</section>
@@ -367,8 +360,18 @@
 
 				<section data-background="images/yellowbrickroad.jpg">
 					<h2 class="darkgrey">Yellowbrick</h2>
-						<aside class="notes">Integrate visual feature analysis, model selection, evaluation and tuning with Scikit-Learn.https://flic.kr/p/2Yj9mj
+						<aside class="notes">A package we've been working on to integrate visual feature analysis, model selection, evaluation and tuning with the Scikit-Learn pipeline.
+						Creating a “visual transformer” to inject visualization in the model workflow.
+						Feature visualizations come after transformers, call fit() draw() then predict()
+						Model evaluation visualizations come after estimator, call fit() predict() score() draw()
+						https://flic.kr/p/2Yj9mj
 						</aside>
+				</section>
+
+				<section data-background="images/yellowbrickvisualtransformers.png" data-background-size="1000px">
+					<h2>Visual Transformers</h2>
+				  	<aside class="notes">Creating a “visual transformer” to inject visualization in the model workflow. Feature visualizations come after transformers, call fit() draw() then predict(). Model evaluation visualizations come after estimator, call fit() predict() score() draw()
+			      </aside>
 				</section>
 
 				<section data-markdown>
@@ -378,17 +381,21 @@
 					cd ~
 					pip install yellowbrick
 					```
-					<aside class="notes"> There's no place like home! You can pip install yellowbrick, a package we've been working on that wraps some of the feature analysis and model evaluation tools in a convenient API. I think we could wrap my entire workflow into this API.
+					<aside class="notes"> There's no place like home! You can pip install yellowbrick.
 					</aside>
 					</script>
 				</section>
 
 				<section data-background="images/trellis.jpg">
 					<h2 class="darkgrey">Cultivar</h2>
-						<aside class="notes">Make feature selection, model selection and tuning interactive with visual analytics.https://flic.kr/p/cS3E7W
+						<aside class="notes"> Project codename: Cultivar. Visual model management system that provides interactivity for feature selection, model selection and tuning. Would love your help. https://flic.kr/p/cS3E7W
 						</aside>
 				</section>
 
+				<section data-background="images/ddlopensource.png" data-background-size="800px">
+						<aside class="notes"> Join us!
+						</aside>
+				</section>
 
 				<section data-markdown>
 					<script type="text/template">
